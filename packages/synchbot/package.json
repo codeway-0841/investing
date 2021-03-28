@@ -3,5 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "cli-progress": "^3.9.0"
+  }
 }
