@@ -4,6 +4,5 @@
   "main": "index.js",
   "author": "codeway",
   "license": "MIT",
-  "private": true,
-  "workspaces": ["packages/*"]
+  "private": true
 }
