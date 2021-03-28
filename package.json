@@ -1,0 +1,9 @@
+{
+  "name": "investing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "codeway",
+  "license": "MIT",
+  "private": true,
+  "workspaces": ["packages/*"]
+}
