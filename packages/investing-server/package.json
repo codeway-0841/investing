@@ -3,17 +3,21 @@
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
    "devDependencies": {
-      "ts-node": "3.3.0",
       "@types/node": "^8.0.29",
-      "typescript": "3.3.3333"
+      "ts-node": "^9.1.1",
+      "ts-node-dev": "^1.1.6",
+      "typescript": "^4.2.3"
    },
    "dependencies": {
-      "typeorm": "0.2.31",
+      "dotenv": "^8.2.0",
+      "fastify": "^3.14.1",
+      "mysql": "^2.14.1",
       "reflect-metadata": "^0.1.10",
-      "mysql": "^2.14.1"
+      "typeorm": "0.2.31"
    },
    "scripts": {
-      "start": "ts-node src/index.ts"
+      "start": "ts-node src/index.ts | pino-pretty -c -t",
+      "start:dev": "ts-node-dev --respawn --transpile-only src/index.ts | pino-pretty"
    },
    "workspaces": {
       "nohoist": [
