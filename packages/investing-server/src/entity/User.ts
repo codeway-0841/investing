@@ -1,18 +1,32 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
-
-@Entity()
-export class User {
-
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    CreateDateColumn,
+    Index,
+  } from 'typeorm'
+  
+  @Entity({
+    name: 'users',
+  })
+  export class User {
     @PrimaryGeneratedColumn()
-    id: number;
-
+    id: number
+  
     @Column()
-    firstName: string;
-
+    email: string
+  
+    @Column({ length: 16 })
+    username: string
+  
+    @Column({ length: 48 })
+    display_name: string
+  
+    @Index()
+    @CreateDateColumn({ type: 'timestamp' })
+    created_at: Date
+  
+    @Index()
     @Column()
-    lastName: string;
-
-    @Column()
-    age: number;
-
-}
+    is_certified: boolean
+  }
