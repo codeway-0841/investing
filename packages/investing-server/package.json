@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "date-fns": "^2.20.1",
     "dotenv": "^8.2.0",
     "fastify": "^3.14.1",
     "mysql": "^2.14.1",
