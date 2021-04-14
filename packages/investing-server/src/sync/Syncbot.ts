@@ -1,10 +1,12 @@
 import * as util from 'util'
+// import * as fs from 'fs/promises'
+const fsPromises = require('fs').promises
 import * as path from 'path'
 import { getStockProfile } from '../finance-api/getStockProfile'
 import { getSectorWeightings } from '../finance-api/getSectorWeightings'
 import { getHistoricalPrice } from '../finance-api/getHistoricalPrice'
 import { groupByMonth } from './lib/groupByMonth'
-const fsPromises = require('fs').promises
+import { Asset } from '../entity/Asset'
 
 const tickersDir = path.resolve(__dirname, 'tickers')
 
@@ -26,14 +28,30 @@ class Syncbot {
     return tickers
   }
 
+  async syncStock(ticker: string) {
+    const [profile, historicalPrices] = await Promise.all([
+      getStockProfile(ticker),
+      getHistoricalPrice(ticker),
+    ])
+    const sectorWeightings = profile.sector
+      ? await getSectorWeightings(ticker)
+      : null
+    const monthlyHistoricalPrices = groupByMonth(historicalPrices)
+    const symbol = new Asset()
+  }
+
   async syncStocks() {
+    // TODO: loadTickers
+    // create a method that syncs stockProfile, sectorWeightings and historicalData
+    // implement bulk sync
+    // - limit concurrent request by 10 (3 while development mode)
+
     // const tickers = await this.loadTickers()
     // const profile = await getStockProfile('VV')
     // const sectorWeightings = await getSectorWeightings('VV')
-
     const historicalPrices = await getHistoricalPrice('VV')
 
-    console.log(groupByMonth(historicalPrices))
+    // console.log(groupByMonth(historicalPrices))
     // console.log(sectorWeightings)
   }
 }
