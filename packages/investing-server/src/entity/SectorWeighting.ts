@@ -18,7 +18,7 @@ export class SectorWeighting {
   @JoinColumn({
     name: 'asset_id',
   })
-  stock: Asset
+  asset: Asset
 
   @Column()
   sector: string

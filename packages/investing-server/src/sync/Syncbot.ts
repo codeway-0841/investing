@@ -51,7 +51,7 @@ class Syncbot {
     // const sectorWeightings = await getSectorWeightings('VV')
     const historicalPrices = await getHistoricalPrice('VV')
 
-    // console.log(groupByMonth(historicalPrices))
+    console.log(groupByMonth(historicalPrices))
     // console.log(sectorWeightings)
   }
 }
