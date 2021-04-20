@@ -6,6 +6,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "fastify-plugin": "^3.0.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.32"
   },
