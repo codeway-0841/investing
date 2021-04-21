@@ -1,24 +1,34 @@
-import fastify  from 'fastify'; 
+import fastify from 'fastify'
+import apiRoute from './routes/api'
+import searchPlugin from './search/plugin'
 
-const PORT = parseInt(process.env.PORT,10)
+const PORT = parseInt(process.env.PORT!, 10)
 
-export default class Server{
-  app = fastify({logger:true})
+interface IQuerystring {
+  username: string
+  password: string
+}
 
-  constructor(){
+interface IHeaders {
+  'H-Custom': string
+}
+
+export default class Server {
+  app = fastify({ logger: true })
+
+  constructor() {
     this.setup()
   }
 
-  setup(){
-    this.app.get('/',(request,reply) =>{
-      reply.send({ whatsup: "codeway"})
-    })
+  setup() {
+    this.app.register(searchPlugin)
+    this.app.register(apiRoute, { prefix: '/api' })
   }
 
-  start(){
-    try{
+  start() {
+    try {
       this.app.listen(PORT)
-    }catch(e){
+    } catch (e) {
       this.app.log.error(e)
     }
   }
