@@ -7,6 +7,7 @@ import {
   JoinColumn,
   OneToMany,
   Index,
+  getRepository,
 } from 'typeorm'
 import { AssetMeta } from './AssetMeta'
 import { AssetType } from './AssetType'
@@ -63,4 +64,12 @@ export class Asset {
 
   @OneToMany(() => SectorWeighting, (sectorWeighting) => sectorWeighting.asset)
   sector_weightings!: SectorWeighting[]
+
+  static findByTicker(ticker: string, join: boolean = false) {
+    const repo = getRepository(Asset)
+    return repo.findOne({
+      where: { ticker },
+      relations: join ? ['asset_meta', 'sector_weightings'] : [],
+    })
+  }
 }
